@@ -10,11 +10,18 @@ function App() {
     fetch("/api")
       .then((response) => response.json())
       .then((result) => {
-        alert(`Hello ${result.hello}!`);
+        alert(`Hello ${result.hello}!` );
+      });
+  }, []);
+  useEffect(() => {
+    fetch("/api/:id")
+      .then((response) => response.json())
+      .then((result) => {
+        alert( `Hello ${result.test}!`);
       });
   }, []);
 
-  // ...
+
   return (
     <>
       <div>
@@ -25,7 +32,7 @@ function App() {
           <img src={reactLogo} className='logo react' alt='React logo' />
         </a>
       </div>
-      <h1>Vite + React</h1>
+      <h1>Fullstack-ish Test Project</h1>
       <div className='card'>
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
