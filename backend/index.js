@@ -5,9 +5,6 @@ const app = express();
 app.get("/api", (_request, response) => {
   response.send({ hello: "World" });
 });
-// app.get("/api/:id", (_request, response) => {
-//   response.send({ test: "school" });
-// });
 
 app.use(express.static(path.join(path.resolve(), "dist")));
 const port = process.env.PORT || 3000;
@@ -25,9 +22,10 @@ const client = new Client({
 
 client.connect();
 app.get("/api/cities", async (_request, response) => {
-  const { rows } = await client.query("SELECT * FROM cities WHERE name = $1", [
-    "Stockholm",
-  ]);
+  // const { rows } = await client.query("SELECT * FROM cities WHERE name = $1", [
+  //   "Stockholm",
+  // ]);
+  const { rows } = await client.query("SELECT * FROM cities ");
   // const { rowsP } = await client.query(
   //   "SELECT * FROM cities WHERE population > $1"
   // );

@@ -13,18 +13,11 @@ function App() {
         alert(`Hello ${result.hello}!`);
       });
   }, []);
-
-  // useEffect(() => {
-  //   fetch("/api/:id")
-  //     .then((response) => response.json())
-  //     .then((result) => {
-  //       alert(`Hello ${result.test}!`);
-  //     });
-  // }, []);
   useEffect(() => {
     fetch("/api/cities")
       .then((response) => response.json())
       .then((result) => {
+        console.log(result);
         const cityNames = result.map((city) => city.name).join(", ");
         alert(`City ${cityNames}!`);
       })
