@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect, useState } from "react";
+import reactLogo from "./assets/react.svg";
+import viteLogo from "/vite.svg";
+import "./App.css";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -10,17 +10,29 @@ function App() {
     fetch("/api")
       .then((response) => response.json())
       .then((result) => {
-        alert(`Hello ${result.hello}!` );
-      });
-  }, []);
-  useEffect(() => {
-    fetch("/api/:id")
-      .then((response) => response.json())
-      .then((result) => {
-        alert( `Hello ${result.test}!`);
+        alert(`Hello ${result.hello}!`);
       });
   }, []);
 
+  // useEffect(() => {
+  //   fetch("/api/:id")
+  //     .then((response) => response.json())
+  //     .then((result) => {
+  //       alert(`Hello ${result.test}!`);
+  //     });
+  // }, []);
+  useEffect(() => {
+    fetch("/api/cities")
+      .then((response) => response.json())
+      .then((result) => {
+        const cityNames = result.map((city) => city.name).join(", ");
+        alert(`City ${cityNames}!`);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+        alert("An error occurred while fetching cities.");
+      });
+  }, []);
 
   return (
     <>
@@ -48,4 +60,4 @@ function App() {
   );
 }
 
-export default App
+export default App;
